@@ -7,6 +7,7 @@ import de.peravs.database.sample.repository.Entity2Repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 @Service
@@ -17,6 +18,9 @@ public class MyService {
 
     @Autowired
     private Entity2Repo entity2Repo;
+
+    @Autowired
+    private EntityManager em;
 
     public void createAndSaveEntity1() {
         Entity1 e1 = new Entity1().setId("1_1");
@@ -46,6 +50,14 @@ public class MyService {
         Entity2 e2 = e1.getEntity2().get(0);
 
         entity2Repo.delete(e2);
+    }
+
+    public void deleteEntity2UsingEm() {
+
+        final Entity1 e1 = em.createQuery("select e from Entity1 e", Entity1.class).getResultList().get(0);
+        Entity2 e2 = e1.getEntity2().get(0);
+
+        em.remove(e2);
     }
 
     public int countEntity2() {

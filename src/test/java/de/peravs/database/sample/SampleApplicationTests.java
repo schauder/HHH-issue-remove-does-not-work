@@ -31,6 +31,20 @@ class SampleApplicationTests {
 	}
 
 	@Test
+	void databaseDeleteTestWithEm() {
+
+		LOG.debug("---- create entities");
+		myService.createAndSaveEntity1();
+
+		LOG.debug("---- delete entity2");
+		myService.deleteEntity2UsingEm();
+
+		int count = myService.countEntity2();
+
+		Assertions.assertThat(count).isEqualTo(1);
+	}
+
+	@Test
 	void databaseDeleteTestSuccess() {
 
 		LOG.debug("---- create entities");
