@@ -25,9 +25,9 @@ class SampleApplicationTests {
 		LOG.debug("---- delete entity2");
 		myService.deleteEntity2UsingRepo2();
 
-		int countOfEntity2AfterSave = myService.countEntity2();
+		int count = myService.countEntity2();
 
-		Assertions.assertThat(countOfEntity2AfterSave).isEqualTo(1);
+		Assertions.assertThat(count).isEqualTo(1);
 	}
 
 	@Test
@@ -39,9 +39,9 @@ class SampleApplicationTests {
 		LOG.debug("---- delete entity2");
 		myService.deleteEntity2UsingRepo1();
 
-		int countOfEntity2AfterSave = myService.countEntity2();
+		int count = myService.countEntity2();
 
-		Assertions.assertThat(countOfEntity2AfterSave).isEqualTo(1);
+		Assertions.assertThat(count).isEqualTo(1);
 	}
 
 }
